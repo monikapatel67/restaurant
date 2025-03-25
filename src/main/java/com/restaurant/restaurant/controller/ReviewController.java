@@ -19,7 +19,7 @@ public class ReviewController {
     @Autowired
     private  ReviewService service;
 
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @PostMapping
     public ResponseEntity<ReviewDTO> submitReview(@RequestBody @Valid ReviewDTO reviewDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.save(reviewDTO));

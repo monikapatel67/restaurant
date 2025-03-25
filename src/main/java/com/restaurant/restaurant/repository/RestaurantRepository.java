@@ -15,7 +15,7 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     @Query("""
             SELECT r FROM Restaurant r
             JOIN Review rev ON rev.restaurant.id = r.id
-            WHERE rev.status = 'APPROVED' AND r.cuisineType = :cuisineType
+            WHERE r.cuisineType = :cuisineType
             GROUP BY r.id
             ORDER BY AVG(rev.rating) DESC
             """)
